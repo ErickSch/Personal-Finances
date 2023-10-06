@@ -1,0 +1,11 @@
+To do:
+    - Convertir la lista de expenses en una tabla
+    - Crear la tabla de daily expenses
+
+    - Poner ultimo dia que se registraron gastos y cuales fueron
+    - Hacer funcionar statistics con cada fecha    
+
+    cards en statistics
+    1. Porcentaje de cada tipo en el total del mes.
+    2. Top 5 gastos del mes .
+    3. Comparar total en esta fecha con el de los demas meses.

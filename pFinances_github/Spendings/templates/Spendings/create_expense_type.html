@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-outline-light m-3 end" href="{% url 'registry' %}">&#8592 Registry</a>
+<div class="d-flex">
+    <div class="col-5 m-5">
+        <div class="card mb-3 px-4 py-3 bg-white rounded">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ expense_type_form.as_p }}
+                <input type="submit" class="btn btn-primary" name="expense_type_form">
+            </form>
+        </div>
+    </div>
+    <div class="col-5 mt-5">
+        <div class="card card px-4 py-3 bg-white rounded">
+            <h3 class="display-3 text-center">Types</h3>
+            <ul class="list-group list-group-flush">
+                {% for expense_type in expense_types %}
+                    <li class="list-group-item">
+                        {{expense_type.type}}
+                        <a class="btn btn-danger ms-3" href="{% url 'delete_expense_type' expense_type.id %}">Delete</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

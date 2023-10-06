@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-white text-center mb-3"><b>Data</b></h1>
+        <table class="table table-light table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Type</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for expense in page_obj %}
+                    <tr>
+                        <th scope="row">{{expense.id}}</th>
+                        <td>{{expense.type}}</td>
+                        <td>$ {{expense.cost}}</td>
+                        <td>{{expense.date}}</td>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'edit_expense' expense.id %}">Edit</a>
+                            <a class="btn btn-danger" href="{% url 'delete_expense' expense.id %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </div>
+        </tbody>
+    </table>
+    <div class="container my-3">
+
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-light" href="?page=1">&laquo; first</a>
+                    <a class="btn btn-outline-light" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+            </div>
+            <span>
+              <p class="text-light">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+            </span>
+            <span>
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-light" href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a class="btn btn-outline-light" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+</div>
+{% endblock content %}

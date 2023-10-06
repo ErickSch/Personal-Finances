@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-outline-light m-3 end" href="{% url 'registry' %}">&#8592 Registry</a>
+<h1 class="text-white text-center">Home</h1>
+<div class="d-flex">
+
+    <div class="col-5 m-5">
+        <div class="card mb-3 px-4 py-3 bg-white rounded">
+            <p><b>Create an expense type</b></p>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ expense_type_form.as_p }}
+                <input type="submit" class="btn btn-primary" name="expense_type_form">
+            </form>
+        </div>
+        <div class="card mb-3 px-4 py-3 bg-white rounded">
+            <p><b>Register an expense</b></p>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ expense_form.as_p }}
+                <input type="submit" class="btn btn-primary" name="expense_form">
+            </form>
+        </div>
+    </div>
+    <div class="col-5 mt-5">
+        <div class="card mb-3 card px-4 py-3 bg-white rounded">
+            <h3 class="display-3 text-center">Receipt</h3>
+            <ul class="list-group list-group-flush">
+                {% for expense in expenses %}
+                    <li class="list-group-item">
+                        {{expense.date}} - ${{expense.cost}} - {{expense.type.type}}
+                        <a class="ms-5 btn btn-danger" href="{%url 'delete_expense' expense.id%}">Delete</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card card px-4 py-3 bg-white rounded">
+            <h3 class="display-3 text-center">Daily totals</h3>
+            <ul class="list-group list-group-flush">
+                {% for daily_expense in daily_expenses %}
+                    <li class="list-group-item">
+                        {{daily_expense.date}} - ${{daily_expense.total}}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
