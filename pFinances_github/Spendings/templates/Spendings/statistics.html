@@ -146,7 +146,6 @@
 <script>
     var todays_expenses_labels = [{% for expense in todays_expenses %}'{{expense.types}}',{% endfor %}];
     var todays_expenses_data = [{% for expense in todays_expenses %}'{{expense.total}}',{% endfor %}]
-    var todays_expenses_test = [{% for expense in todays_expenses %}'{{expense}}',{% endfor %}]
 
 
 
@@ -228,7 +227,6 @@
         extraToSpendData.style.color = color;
     }
 
-    console.log(todays_expenses_test)
     console.log(todays_expenses_labels)
 </script>
 
